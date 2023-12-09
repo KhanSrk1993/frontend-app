@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import "./App.css";
 import WaterFallImg from "./Img/WaterFall.jpg";
-// import { uploadFile } from "./services/api.js";
+import { uploadFile } from "./services/api.js";
 
 function App() {
   const [file, setFile] = useState("");
@@ -16,9 +16,9 @@ function App() {
         data.append("name", file.name);
         data.append("file", file);
 
-        // let response = await uploadFile(data);
-        // setResult(response.path);
-        // console.log(response);
+        let response = await uploadFile(data);
+        setResult(response.path);
+        console.log(response);
       }
     }
     getImage();
@@ -42,7 +42,7 @@ function App() {
           ref={fileInputRef}
           onChange={(e) => setFile(e.target.files[0])}
         />
-        <a href={result} target='_blank' > {result} </a>
+        <a href={result} > {result} </a>
       </div>
     </div>
   );
